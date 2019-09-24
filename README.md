@@ -6,12 +6,15 @@
 ### Installation
 ###### $ npm install reactnative-multiimagepicker-android --save
 
-### Mostly autolinking (>= 0.60)
+### Autolinking (>= 0.60)
 ###### react-native link reactnative-multiimagepicker-android
 
 ## API
-```pickImage```(option,promise) - returns uri of images selected
-
+```pickImage(option: SelectionOptions) : Promise<string>``` - returns uri of images selected
+```SelectionOptions {
+        multiple: boolean;
+      }
+ ```
 ## Example
 ```
 MultipleImagePicker.pickImage(
