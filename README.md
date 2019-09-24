@@ -11,7 +11,8 @@
 
 ## API
 ```pickImage(option: SelectionOptions) : Promise<string>``` - returns uri of images selected
-```SelectionOptions {
+``` 
+SelectionOptions {
         multiple: boolean;
       }
  ```
