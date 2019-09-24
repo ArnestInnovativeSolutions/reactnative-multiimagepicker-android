@@ -10,7 +10,7 @@
 ###### react-native link reactnative-multiimagepicker-android
 
 ## API
-```pickImage(option: SelectionOptions) : Promise<string>``` - returns uri of images selected
+```pickImage(option: SelectionOptions) : Promise<string[]>``` - returns uri of images selected
 ``` 
 SelectionOptions {
         multiple: boolean;
