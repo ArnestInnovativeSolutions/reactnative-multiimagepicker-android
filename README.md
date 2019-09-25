@@ -1,26 +1,32 @@
-reactnative-multiimagepicker-android
-React-Native MultipleImagePicker module for Android.
+## reactnative-multiimagepicker-android
+###### React-Native MultipleImagePicker module for Android.
 
-Installation
-$ npm install reactnative-multiimagepicker-android --save
+## Getting Started
 
-Mostly automatic installation (react-native 0.59 and lower)
-react-native link @reactnative-multiimagepicker-android
+### Installation
+###### $ npm install reactnative-multiimagepicker-android --save
 
-Permissions - Android
-Add the required permissions in AndroidManifest.xml:
+### Autolinking (>= 0.60)
+###### react-native link reactnative-multiimagepicker-android
 
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-Usage
+## API
+```pickImage(option: SelectionOptions) : Promise<string[]>``` - returns uri of images selected
+``` 
+SelectionOptions {
+        multiple: boolean;
+      }
+ ```
+## Example
+```
 MultipleImagePicker.pickImage(
 {
-    multiple:true
-}
-).then(images => {
-let imagesUri = images;   
+  multiple: true
+}).then(images => {
+  alert(JSON.stringify(images));
 }).catch((error) => {
-    alert(error)
+   alert(error)
 })
+```
+
+
 
