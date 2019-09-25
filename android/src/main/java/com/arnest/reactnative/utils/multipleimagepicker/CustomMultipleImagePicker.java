@@ -20,7 +20,7 @@ public class CustomMultipleImagePicker implements ReactPackage {
   public List<NativeModule> createNativeModules(
                               ReactApplicationContext reactContext) {
     List<NativeModule> modules = new ArrayList<>();
-
+    //register the module
     modules.add(new MultipleImagePickerModule(reactContext));
 
     return modules;

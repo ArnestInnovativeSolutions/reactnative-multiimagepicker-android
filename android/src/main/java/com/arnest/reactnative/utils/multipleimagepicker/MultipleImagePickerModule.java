@@ -23,6 +23,9 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Arrays;
 
+/**
+ * This is a class to pick single or multiple image
+ */
 public class MultipleImagePickerModule extends ReactContextBaseJavaModule {
 
   private static final int IMAGE_PICKER_REQUEST = 61110;
@@ -33,9 +36,18 @@ public class MultipleImagePickerModule extends ReactContextBaseJavaModule {
 
   private Promise mPickerPromise;
   private boolean multiple = false;
-
+/**
+ * Extend BaseActivityEventListener or implement ActivityEventListener to listen the result from onActivityResult
+ * from activity started with startActivityForResult
+ */
   private final ActivityEventListener mActivityEventListener = new BaseActivityEventListener() {
-
+     /**
+     * 
+     * @param activity the started Activity
+     * @param requestCode  request code which was passed to startActivityForResult()
+     * @param resultCode its either RESULT_CANCELED or RESULT_OK
+     * @param intent carries the result data
+     */
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent intent) {
       if (requestCode == IMAGE_PICKER_REQUEST) {
@@ -68,12 +80,18 @@ public class MultipleImagePickerModule extends ReactContextBaseJavaModule {
     // Add the listener for `onActivityResult`
     reactContext.addActivityEventListener(mActivityEventListener);
   }
-
+/**
+ * returns the module name
+ */
   @Override
   public String getName() {
     return "MultipleImagePicker";
   }
-
+ /**
+   * select images, single or multiple
+   * @param options set selection mode
+   * @param promise returns the string[] of selected images uri
+   */
   @ReactMethod
   public void pickImage(final ReadableMap options,final Promise promise) {
     Activity currentActivity = getCurrentActivity();
@@ -93,7 +111,11 @@ public class MultipleImagePickerModule extends ReactContextBaseJavaModule {
       galleryIntent.setType("image/*");
       galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, multiple);
       final Intent chooserIntent = Intent.createChooser(galleryIntent, "Pick an image");
-      
+
+      /**
+       * start an activity and get the result back using startActivityForResult
+       * It sends result as another Intent object.
+       */
       currentActivity.startActivityForResult(chooserIntent, IMAGE_PICKER_REQUEST);
     } catch (Exception e) {
       mPickerPromise.reject(E_FAILED_TO_SHOW_PICKER, e);
